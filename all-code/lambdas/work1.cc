@@ -13,13 +13,14 @@ int main() {
 
     bool first = true;
     for (auto r : readings) {
+        if (!lambda(r)) {
+            continue;
+        }
         if (!first) {
             std::cout << ' ';
         }
-        if (lambda(r)) {
-            std::cout << r;
-        }
         first = false;
+        std::cout << r;   
     }
 
     return 0;
