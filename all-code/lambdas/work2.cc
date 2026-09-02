@@ -2,7 +2,6 @@
 // сколько элементов вектора подходят под условие
 
 #include <vector>
-#include <cmath>
 
 size_t CountLargeWithdrawals(const std::vector<long long> &amounts, long long threshold) {
     if (threshold < 0) { // вместо проверки amounts.empty()
