@@ -5,14 +5,14 @@
 #include <cmath>
 
 size_t CountLargeWithdrawals(const std::vector<long long> &amounts, long long threshold) {
-    if (amounts.empty()) {
-        return 0;
+    if (threshold < 0) { // вместо проверки amounts.empty()
+        threshold = 0;
     }
     
     size_t result = 0;
 
     auto lambda = [threshold](long long x) {
-        return x > 0 && std::abs(x) >= threshold;
+        return x < 0 && x <= -threshold; // неправильно прочитал условие; убрал std::abs()
     };
 
     for (auto a : amounts) {
