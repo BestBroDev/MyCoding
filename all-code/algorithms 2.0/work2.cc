@@ -5,7 +5,6 @@
 #include <algorithm>
 
 size_t RemoveInvalidTransactions(std::vector<long long> &amounts) {
-
     size_t orig_size = amounts.size();
 
     auto new_end = std::remove_if(amounts.begin(), amounts.end(), [](long long x) {
