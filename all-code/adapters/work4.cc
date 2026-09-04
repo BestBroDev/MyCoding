@@ -2,6 +2,8 @@
 
 #include <vector>
 #include <queue>
+#include <functional>
+#include <utility>
 
 std::vector<int> MergeQueues(std::vector<std::queue<int>> &queues) {
     std::vector<int> result = {};

@@ -7,23 +7,18 @@ std::vector<std::pair<std::string_view, std::string_view>> ParseConfig(std::stri
     std::vector<std::pair<std::string_view, std::string_view>> result;
     
     while (!config.empty()) {
-        auto semicolon = config.find(';');
+        size_t semicolon = config.find(';');
         
-        std::string_view segment;
-        if (semicolon != std::string_view::npos) {
-            segment = config.substr(0, semicolon);
-            config.remove_prefix(semicolon + 1);
-        } else {
-            segment = config;
-            config = {};
+        std::string_view segment = config.substr(0, semicolon);
+
+        size_t equal = segment.find('=');
+        if (equal != std::string_view::npos) {
+            result.emplace_back(segment.substr(0, equal), segment.substr(equal+1));
         }
 
-        auto equal = config.find('=');
-        if (equal == std::string_view::npos) {
-            continue;
+        if (semicolon == std::string_view::npos) {
+            break;
         }
-        
-        result.push_back({segment.substr(0, equal), segment.substr(equal+1)});
 
         config.remove_prefix(semicolon+1);
     }
